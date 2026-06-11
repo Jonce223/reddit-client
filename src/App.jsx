@@ -18,8 +18,14 @@ function App() {
       {/*Header*/}
       <div className="header">
         <p className = 'logo'>Logo</p>
-        <p className = 'search-bar'>SearchBar</p>
-        <p className = 'login-btn'>Login/Signup</p>
+
+        {/*Functional search bar */}
+        <input 
+        type='text' 
+        placeholder="Search Reddit" 
+        className='search-input'/>
+        {/*Real button*/}
+        <button className='login-btn'>Log In</button>
       </div>
 
       {/* Posts Container */}
