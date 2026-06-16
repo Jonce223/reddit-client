@@ -29,7 +29,36 @@
   padding: 20px;
   border-radius: 8px;
   text-align: left;
+  display: flex;
+  flex-direction: wrap;
+  gap: 20px;
 }
+
+.post-votes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.vote-btn {
+  background: none;
+  border: none;
+  color: #818384;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.vote-btn:hover {
+  color: #ff4500; /*Red reddit color*/
+}
+
+.vote-count {
+  font-weight: bold;
+  font-size: 14px;
+  color: #d7dadc;
+}
+
 /* Search Bar Style*/
 .search-input:focus{
   outline: none;
@@ -59,4 +88,59 @@
   font-weight: bold;
   font-size: 18px;
   color: #ff4500; /*Red reddit color*/
+}
+
+.post-content{
+  flex: 1;
+  min-width: 250px; /*Allows content to shrink properly*/
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.post-meta {
+  font-size: 12px;
+  color: #818384;
+}
+
+.post-title {
+  font-size: 18px;
+  color:#0079d3;
+  margin: 0;
+}
+
+.post-text-body {
+  font-size: 14px;
+  color: #b3b3b3;
+  margin: 0;
+}
+
+.post-media-placeholder {
+  background-color: #2a2a2a;
+  border: 1px dashed #444;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: #818384;
+}
+
+.post-footer {
+  width: 100%;
+  padding-top: 10px;
+  border-top: 1px solid #2a2a2a;
+}
+
+.comment-btn {
+  background-color: #2a2a2a;
+  border: none;
+  color: #d7dadc;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.comment-btn:hover {
+  background-color: #333;
 }

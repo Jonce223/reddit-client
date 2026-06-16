@@ -29,12 +29,54 @@ function App() {
       </div>
 
       {/* Posts Container */}
-      <div clasName= "posts-container">
-        <div className="post-card">Post 1</div>
-        <div className="post-card">Post 2</div>
-        <div className="post-card">Post 3</div>
+      <div className= "posts-container">
+
+        {/* Post 1 */}
+        <div className="post-card">
+          {/*1. Voting place*/}
+          <div className='post-votes'>
+            <button className='vote-btn'>▲</button>
+            <span className='vote-count'>1.2k</span>
+            <button className='vote-btn'>▼</button>
+          </div>
+        
+
+        {/* Post content (text and place for image) */}
+        <div className="post-content">
+          <p className='post-meta'>Posted by u/john_doe</p>
+          <h2 className='post-title'>Look At this amazing set up I build for my self</h2>
+          <div className='post-media-placeholder'>
+            <span> [ Image / Media Placeholder ] </span>
+          </div>
+        </div>
+
+        {/*Place with comments */}
+        <div className="post-footer">
+          <button className='comment-btn'>💬 42 Comments</button>
+        </div>
       </div>
-     </div>
+
+      {/*Post 2 (Simpler just with text) */}
+      <div className="post-card">
+        <div className='post-votes'>
+          <button className='vote-btn'>▲</button>
+          <span className='vote-count'>500</span>
+          <button className='vote-btn'>▼</button>
+        </div>
+
+        <div className="post-content">
+          <p className='post-meta'>Posted by u/javascript_fan</p>
+          <h2 className='post-title'>Just had the best pizza in town!</h2>
+          <p className='post-text-body'>I found this amazing pizza place downtown. The crust was perfect and the toppings were fresh. Highly recommend it to all pizza lovers!</p>
+        </div>
+
+        <div className="post-footer">
+          <button className='comment-btn'>💬 15 Comments</button>
+        </div>
+      </div>
+
+        </div>
+      </div>
     </>
   )
 }
