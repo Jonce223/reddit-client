@@ -92,6 +92,29 @@ function App() {
       </aside>
 
     </div>
+
+    {/* Modal Container */}
+    <div className='modal-overlay'>
+        <div className='modal-box'>
+          <button className='modal-close-btn'>X</button>
+          <div className='modal-post-header'>
+            <span className='vote-badge'>▲ 1.2k</span>
+            <p className='post-meta'>Posted by u/john_doe</p>
+          </div>
+          <h2 className='modal-post-title'>Look At this amazing set up I build for my self</h2>
+          <div className='modal-comments-section'>
+            <h3>Comments</h3>
+            <div className="comment-card">
+              <p className="comment-meta">u/alex_dev • 2h ago</p>
+              <p className="comment-text">This is absolutely clean! Love the cable management here. What monitor is that?</p>
+            </div>
+            <div className="comment-card">
+              <p className="comment-meta">u/setup_king • 1h ago</p>
+              <p className="comment-text">Insane setup! The RGB lights under the desk give it a really nice vibe.</p>
+            </div>
+          </div>
+        </div>
+    </div>
   </div>
   </>
   )
