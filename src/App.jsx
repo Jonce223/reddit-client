@@ -2,10 +2,16 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
+import { useSelector, useDispatch } from 'react-redux'
+import { openModal, closeModal } from './store/uiSlice'
 import './App.css'
 
+
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useDispatch(); //Allows to send messages to the user
+
+  //Reading from redux and the window must be open
+  const isModalOpen= useSelector((state) => state.ui.isModalOpen);
 
   return (
     <>
@@ -54,7 +60,7 @@ function App() {
 
             {/*Place with comments */}
             <div className="post-footer">
-              <button className='comment-btn'>💬 42 Comments</button>
+              <button className='comment-btn' onClick={() => dispatch(openModal())}>💬 42 Comments</button>
             </div>
           </div>
 
@@ -73,7 +79,7 @@ function App() {
           </div>
 
           <div className="post-footer">
-            <button className='comment-btn'>💬 15 Comments</button>
+            <button className='comment-btn' onClick={() => dispatch(openModal())}>💬 15 Comments</button>
           </div>
         </div>
       </main>
@@ -94,9 +100,10 @@ function App() {
     </div>
 
     {/* Modal Container */}
+    {isModalOpen&& (
     <div className='modal-overlay'>
         <div className='modal-box'>
-          <button className='modal-close-btn'>X</button>
+          <button className='modal-close-btn' onClick={() => dispatch(closeModal())}>X</button>
           <div className='modal-post-header'>
             <span className='vote-badge'>▲ 1.2k</span>
             <p className='post-meta'>Posted by u/john_doe</p>
@@ -115,6 +122,7 @@ function App() {
           </div>
         </div>
     </div>
+   )} 
   </div>
   </>
   )
