@@ -1,0 +1,39 @@
+{
+  "data": {
+    "children": [
+      {
+        "data": {
+          "id": "1",
+          "title": "Welcome to my custom Reddit Client app!",
+          "author": "joncevas",
+          "ups": 1540,
+          "num_comments": 42,
+          "thumbnail": "https://redditmedia.com",
+          "selftext": "Successfully bypassed the CORS issue by creating a local environment file. This works perfectly for Codecademy development workflows!"
+        }
+      },
+      {
+        "data": {
+          "id": "2",
+          "title": "React Hooks vs Redux Toolkit - what are your thoughts?",
+          "author": "redux_master",
+          "ups": 520,
+          "num_comments": 15,
+          "thumbnail": "self",
+          "selftext": "I am building a Reddit client and love how easy Redux Toolkit makes handling global states like modals!"
+        }
+      },
+      {
+        "data": {
+          "id": "3",
+          "title": "The ultimate pizza setup in Vilnius",
+          "author": "pizza_fanatic",
+          "ups": 89,
+          "num_comments": 8,
+          "thumbnail": "self",
+          "selftext": "Found an incredible spot downtown. Crust is 10/10, toppings are imported straight from Italy."
+        }
+      }
+    ]
+  }
+}

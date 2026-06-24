@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
@@ -10,34 +10,40 @@ import './App.css'
 function App() {
   const dispatch = useDispatch(); //Allows to send messages to the user
 
-  const posts = [
-    {
-      id: '1',
-      title: 'Look At this amazing set up I build for myself',
-      username: 'john_doe',
-      upvotes: '1.2k',
-      commentsCount: 42,
-      hasImage: true
-    },
-    {
-      id: '2',
-      title: 'Had the best Pizza in town!',
-      username: 'javascript is fun',
-      upvotes: '500',
-      commentsCount: 14,
-      hasImage: false,
-      body: 'I found this amazing pizza place downtown. The crust was perfect and the topics amazing!'
-    },
-    {
-      id: '3',
-      title: 'React Hooks vs Redux Toolkit - what are your thoughts?',
-      username: 'redux_master',
-      upvotes: '300',
-      commentsCount: 8,
-      hasImage: false,
-      body: 'I a building a Reddit clients and love how Redux Toolkit is hard'
-    }
-  ];
+  const [posts, setPosts] = useState([]); //At the start its empty
+
+  useEffect(() => {
+    // Request for free Reddit JSON API
+    fetch('/posts.json')
+    .then((response) => {
+      if(!response.ok){
+        throw new Error('Bad Server answer');
+      }
+      return response.json();
+    }) //converting the data we got to a JSON object
+    .then((data) => {
+      //Reddit data structure is deep, so we just take the post array
+      const redditPosts= data.data.children;
+
+      //We jus take the data, that we need for out posts
+      const formattedPosts = redditPosts.map((item) => ({
+        id: item.data.id,
+        title: item.data.title,
+        username: item.data.author,
+        upvotes: item.data.ups >= 1000 ? `${(item.data.ups / 1000).toFixed(1)}k` : item.data.ups,
+        //We check if Reddit sent a real photo(and not text like "self" of "default" )
+        hasImage: item.data.thumbnail && item.data.thumbnail.startsWith('http'),
+        commentsCount: item.data.num_comments,
+        body: item.data.selftext
+      }));
+
+      //We save the real post into React state
+      setPosts(formattedPosts);
+    })
+    .catch((error) => console.error('Error Loading Reddit data:', error));
+  }, []); //Empty brackets at the end means, that the REQUEST will be ONLY ONE TIME, when the page is loaded
+
+
 
   //Reading from redux and the window must be open
   const isModalOpen= useSelector((state) => state.ui.isModalOpen);
@@ -94,7 +100,7 @@ function App() {
               {post.body && <p className='post-text-body'>{post.body}</p>}
             </div>
 
-            <div className='poster-footer'>
+            <div className='post-footer'>
               <button className='comment-btn' onClick={() => dispatch(openModal())}>
                 💬 {post.commentsCount} Comments
               </button>
