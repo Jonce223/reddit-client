@@ -11,6 +11,7 @@ function App() {
   const dispatch = useDispatch(); //Allows to send messages to the user
 
   const [posts, setPosts] = useState([]); //At the start its empty
+  const [searchTerm, setSearchTerm] = useState('') // At the start the seach is empty
 
   useEffect(() => {
     // Request for free Reddit JSON API
@@ -65,7 +66,10 @@ function App() {
         <input 
         type='text' 
         placeholder="Search Reddit" 
-        className='search-input'/>
+        className='search-input'
+        value={searchTerm} // we connect the seach bar with the state
+        onChange={(e) => setSearchTerm(e.target.value)} // Everytime we type in we update the seach bar
+        />
         {/*Real button*/}
         <button className='login-btn'>Log In</button>
       </div>
@@ -75,43 +79,45 @@ function App() {
       {/* Posts Container */}
       <main className= "posts-container">
 
-        {posts.map((post) => (
-          <div className='post-card' key={post.id}>
+        {posts.filter((post) =>
+          post.title.toLowerCase().includes(searchTerm.toLocaleLowerCase()))
+            .map((post) => (
+              <div className='post-card' key={post.id}>
 
-            {/** 1. Voting part */}
-            <div className='post-votes'>
-              <button className='vote-btn'>▲</button>
-              <span className='vote-count'>{post.upvotes}</span>
-              <button className='vote-btn'>▼</button>
-            </div>
-
-            {/** 2. Content Part */}
-            <div className='post-content'>
-              <p className='post-meta'>Posted by /u{post.username}</p>
-              <h2 className='post-title'>{post.title}</h2>
-
-              {/** If the text has image, we display it */}
-              {post.hasImage && (
-                <div className='post-media-container'>
-                  <img
-                    src={post.thumbnail}
-                    alt={post.title}
-                    style={{ width: '100%', maxHeight: '400px', objectFit: 'cover', borderRadius: '6px', marginTop: '10px'}}
-                  />
+                {/** 1. Voting part */}
+                <div className='post-votes'>
+                  <button className='vote-btn'>▲</button>
+                  <span className='vote-count'>{post.upvotes}</span>
+                  <button className='vote-btn'>▼</button>
                 </div>
-              )}
 
-              {/** if Post has text we display it */}
-              {post.body && <p className='post-text-body'>{post.body}</p>}
-            </div>
+                {/** 2. Content Part */}
+                <div className='post-content'>
+                  <p className='post-meta'>Posted by /u{post.username}</p>
+                  <h2 className='post-title'>{post.title}</h2>
 
-            <div className='post-footer'>
-              <button className='comment-btn' onClick={() => dispatch(openModal())}>
-                💬 {post.commentsCount} Comments
-              </button>
-            </div>
+                  {/** If the text has image, we display it */}
+                  {post.hasImage && (
+                    <div className='post-media-container'>
+                      <img
+                        src={post.thumbnail}
+                        alt={post.title}
+                        style={{ width: '100%', maxHeight: '400px', objectFit: 'cover', borderRadius: '6px', marginTop: '10px'}}
+                      />
+                    </div>
+                  )}
 
-          </div>
+                  {/** if Post has text we display it */}
+                  {post.body && <p className='post-text-body'>{post.body}</p>}
+                </div>
+
+                <div className='post-footer'>
+                  <button className='comment-btn' onClick={() => dispatch(openModal())}>
+                    💬 {post.commentsCount} Comments
+                  </button>
+                </div>
+
+              </div>
         ))}
 
       </main>
