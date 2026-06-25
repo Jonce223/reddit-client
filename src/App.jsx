@@ -33,6 +33,7 @@ function App() {
         upvotes: item.data.ups >= 1000 ? `${(item.data.ups / 1000).toFixed(1)}k` : item.data.ups,
         //We check if Reddit sent a real photo(and not text like "self" of "default" )
         hasImage: item.data.thumbnail && item.data.thumbnail.startsWith('http'),
+        thumbnail: item.data.thumbnail,
         commentsCount: item.data.num_comments,
         body: item.data.selftext
       }));
@@ -91,8 +92,12 @@ function App() {
 
               {/** If the text has image, we display it */}
               {post.hasImage && (
-                <div className='post-media-placeholder'>
-                  <span> [ Image / Media Placejolder </span>
+                <div className='post-media-container'>
+                  <img
+                    src={post.thumbnail}
+                    alt={post.title}
+                    style={{ width: '100%', maxHeight: '400px', objectFit: 'cover', borderRadius: '6px', marginTop: '10px'}}
+                  />
                 </div>
               )}
 

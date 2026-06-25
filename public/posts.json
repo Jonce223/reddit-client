@@ -8,7 +8,7 @@
           "author": "joncevas",
           "ups": 1540,
           "num_comments": 42,
-          "thumbnail": "https://redditmedia.com",
+          "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDszX-0ewa03v2ZQwN4i8D3cngMR3t7hOQ-yKL3ntMTg&s",
           "selftext": "Successfully bypassed the CORS issue by creating a local environment file. This works perfectly for Codecademy development workflows!"
         }
       },
@@ -19,7 +19,7 @@
           "author": "redux_master",
           "ups": 520,
           "num_comments": 15,
-          "thumbnail": "self",
+          "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxfzZG3B7A8HjxidmD6JZig2PIZPssvEUwhmHQWWc3iA&s=10",
           "selftext": "I am building a Reddit client and love how easy Redux Toolkit makes handling global states like modals!"
         }
       },
