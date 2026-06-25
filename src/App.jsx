@@ -166,7 +166,7 @@ function App() {
           </li>
           <li>
             <button 
-              className={`category-btn ${selectedCategory === 'Home' ? 'active' : ''}`}
+              className={`category-btn ${selectedCategory === 'Art' ? 'active' : ''}`}
               onClick={() => setSelectedCategory('Art')}>
                 🎨 Art
             </button>
