@@ -9,6 +9,7 @@
           "ups": 1540,
           "num_comments": 42,
           "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDszX-0ewa03v2ZQwN4i8D3cngMR3t7hOQ-yKL3ntMTg&s",
+          "subreddit": "Home",
           "selftext": "Successfully bypassed the CORS issue by creating a local environment file. This works perfectly for Codecademy development workflows!"
         }
       },
@@ -20,6 +21,7 @@
           "ups": 520,
           "num_comments": 15,
           "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxfzZG3B7A8HjxidmD6JZig2PIZPssvEUwhmHQWWc3iA&s=10",
+          "subreddit": "Tech",
           "selftext": "I am building a Reddit client and love how easy Redux Toolkit makes handling global states like modals!"
         }
       },
@@ -31,6 +33,7 @@
           "ups": 89,
           "num_comments": 8,
           "thumbnail": "self",
+          "subreddit": "Gaming",
           "selftext": "Found an incredible spot downtown. Crust is 10/10, toppings are imported straight from Italy."
         }
       }

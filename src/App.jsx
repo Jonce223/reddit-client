@@ -12,6 +12,8 @@ function App() {
 
   const [posts, setPosts] = useState([]); //At the start its empty
   const [searchTerm, setSearchTerm] = useState('') // At the start the seach is empty
+  const [selectedCategory, setSelectedCategory] = useState('Home'); //For the star we set the state to Home
+
 
   useEffect(() => {
     // Request for free Reddit JSON API
@@ -36,6 +38,7 @@ function App() {
         hasImage: item.data.thumbnail && item.data.thumbnail.startsWith('http'),
         thumbnail: item.data.thumbnail,
         commentsCount: item.data.num_comments,
+        subreddit: item.data.subreddit,
         body: item.data.selftext
       }));
 
@@ -79,9 +82,16 @@ function App() {
       {/* Posts Container */}
       <main className= "posts-container">
 
-        {posts.filter((post) =>
-          post.title.toLowerCase().includes(searchTerm.toLocaleLowerCase()))
-            .map((post) => (
+        {posts
+          .filter((post) =>
+          post.title.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+          )
+          .filter((post) => {
+            //Adding Category filter
+            if(selectedCategory === 'Home') return true; //Shows all the posts
+            return post.subreddit === selectedCategory; //Shows posts that only were selected on the categories
+          })
+          .map((post) => (
               <div className='post-card' key={post.id}>
 
                 {/** 1. Voting part */}
@@ -126,11 +136,41 @@ function App() {
       <aside className='sidebar'>
         <h2>Subreddits</h2>
         <ul>
-          <li><button className="category-btn active">🏠 Home</button></li>
-          <li><button className="category-btn">🎮 Gaming</button></li>
-          <li><button className="category-btn">⚽ Sports</button></li>
-          <li><button className="category-btn">💻 Tech</button></li>
-          <li><button className="category-btn">🎨 Art</button></li>
+          <li>
+              <button
+                className={`category-btn ${selectedCategory === 'Home' ? 'active' : ''}`}
+                onClick={() => setSelectedCategory('Home')}>
+                🏠 Home
+              </button>
+          </li>
+          <li>
+            <button
+                className={`category-btn ${selectedCategory === 'Gaming' ? 'active' : ''}`}
+                onClick={() => setSelectedCategory('Gaming')}>
+                  🎮 Gaming
+            </button>
+          </li>
+          <li>
+            <button 
+              className={`category-btn ${selectedCategory === 'Sports' ? 'active' : ''}`}
+              onClick={() => setSelectedCategory('Sports')}>
+                ⚽ Sports
+            </button>
+          </li>
+          <li>
+            <button 
+              className={`category-btn ${selectedCategory === 'Tech' ? 'active' : ''}`}
+              onClick={() => setSelectedCategory('Tech')}>
+                💻 Tech
+            </button>
+          </li>
+          <li>
+            <button 
+              className={`category-btn ${selectedCategory === 'Home' ? 'active' : ''}`}
+              onClick={() => setSelectedCategory('Art')}>
+                🎨 Art
+            </button>
+          </li>
         </ul>
 
       </aside>
