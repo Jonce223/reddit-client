@@ -1,7 +1,4 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import { useSelector, useDispatch } from 'react-redux'
 import { openModal, closeModal } from './store/uiSlice'
 import './App.css'
@@ -122,7 +119,7 @@ function App() {
                 </div>
 
                 <div className='post-footer'>
-                  <button className='comment-btn' onClick={() => dispatch(openModal())}>
+                  <button className='comment-btn' onClick={() => dispatch(openModal())} aria-label='Comments'>
                     💬 {post.commentsCount} Comments
                   </button>
                 </div>
